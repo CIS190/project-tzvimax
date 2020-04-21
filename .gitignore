@@ -3,3 +3,4 @@ build
 CPPurses
 Testing
 *.out
+CMakeCache.txt
