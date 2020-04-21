@@ -3,4 +3,8 @@ build
 CPPurses
 Testing
 *.out
+<<<<<<< HEAD
 *.cmake
+=======
+CMakeCache.txt
+>>>>>>> 2e20547c0f4cda627d8433350feae747e9e2ba97
