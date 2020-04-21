@@ -1,45 +1,64 @@
 #include <cppurses/cppurses.hpp>
 using namespace cppurses;
 
-int main() {
-    // Must create this object before any Widgets are created.
-    System sys;
+class TestMain : public cppurses::layout::Vertical {
+public:
+  TestMain() { init(); }
 
+    Glyph_string greeting{"Hello, World! This is where you will get Serial "
+                          "data and where you can type",
+                          Attribute::Bold};
+
+                          //This could all be made cleaner, broken up into diff classes.
+
+
+    //make top level a child of myself
+    layout::Horizontal &h{this->make_child<layout::Horizontal>()};
+    layout::Vertical &v = h.make_child<layout::Vertical>();
+    Menu &menu {v.make_child<Menu>("Serial Options")};
+
+    Push_button &button = h.make_child<Push_button>("Button");
+    Menu_stack &stack = v.make_child<Menu_stack>("Stack");
+
+    Textbox& t = v.make_child<Textbox>(greeting);
+    Status_bar& sb = v.make_child<Status_bar>("status test");
+    Textbox& stackTb = stack.make_page<Textbox>("Test Menu in Stack");
+
+  void init() {
     // Create a text string with Attributes, has type Glyph_string.
-    Glyph_string greeting{"Hello, World!", Attribute::Underline};
-
-    // Create Textbox Widget with `greeting` as the initial text.
-    // Textbox tb{greeting};
-
-    // Menu menu{"menu"};
-    // menu.append_item("test");
-    // Textbox & tb = menu.make_child<Textbox>(greeting);
-    layout::Vertical v{};
-    v.make_child<Menu>("menu V Test");
-    v.make_child<Textbox>(greeting);
-
-    layout::Stack stack{};
-
-    stack.make_page<Menu>("menu Test");
-    stack.make_page<Textbox>(greeting);
-    stack.set_active_page(1);
-    
-    v.enable();
-
+    this->focus_policy = Focus_policy::Strong;
+    this->enable();
+    menu.enable();
     stack.enable();
-    // v.enable();
-    // tb.enable();
-    // menu.enable();
+    h.enable();
+    v.enable();
+    t.enable();
+    sb.enable();
+    stackTb.enable();
+
+    menu.append_item("A");
+    menu.append_item("Disconnect");
+    menu.append_item("Connect");
+    menu.append_item("Print");
+    menu.height_policy.preferred(2);
+    
+
+    button.clicked.connect([this] {
+        
+         stack.goto_menu();
+    
+    });
 
 
-    // Set the background and foreground colors of the Textbox.
-    // tb.brush.set_background(Color::Dark_blue);
-    // tb.brush.set_foreground(Color::Light_blue);
+  }
 
-    // Enable a border to be drawn around the Textbox.
-    // tb.border.enable();
+};
 
-    // Set the Textbox as the head(top-level) Widget, initialize the screen and
-    // start the user input event loop.
-    return sys.run(v);
+int main() {
+  // Must create this object before any Widgets are created.
+  System sys;
+    TestMain page;
+        System::set_initial_focus(&page.h);
+
+  return sys.run(page);
 }
