@@ -1,7 +1,8 @@
-#include <cppurses/cppurses.hpp>
 #include "Serial.hpp"
-#include<iostream>
-       #include <unistd.h>
+#include <cppurses/cppurses.hpp>
+#include <cppurses/system/detail/fps_to_period.hpp>
+#include <iostream>
+#include <unistd.h>
 
 using namespace cppurses;
 
@@ -27,6 +28,22 @@ public:
   Status_bar &sb = v.make_child<Status_bar>("status test");
   Textbox &stackTb = stack.make_page<Textbox>("Test Menu in Stack");
 
+  std::string bufferIn;
+  Serial serial{bufferIn};
+
+  bool timer_event()
+      override { // TODO encapsulate this in an "animated terminal"
+                 // TODO also this feeels like such a bad way to do this
+    serial.getChar();
+    t.append(serial.getBufferIn());
+    if(t.display_height() >= t.height()){
+    t.scroll_down();
+    //TODO make this nicer
+    }
+    serial.clearBufferIn();
+    // std::cerr << serial.getBufferIn();
+    return Widget::timer_event();
+  }
   void init() {
     // Create a text string with Attributes, has type Glyph_string.
     this->focus_policy = Focus_policy::Strong;
@@ -38,6 +55,11 @@ public:
     t.enable();
     sb.enable();
     stackTb.enable();
+
+    std::string device{"/dev/cu.usbserial-AI04SV81"};
+    serial.openConn(device, 9600);
+    this->enable_animation(detail::fps_to_period(60));
+    t.enable_word_wrap();
 
     menu.append_item("A");
     menu.append_item("Disconnect");
@@ -60,20 +82,18 @@ int main() {
   TestMain page;
   System::set_initial_focus(&page.h);
 
-  // return sys.run(page);
-  std::string bufferIn;
-  Serial serial{bufferIn};
+  return sys.run(page);
 
-  std::string device{"/dev/cu.usbserial-AI04SV81"};
-  serial.openConn(device, 9600);
   // std::cout << serial.getChar();
   // std::cout << serial.getChar();
   // std::cout << serial.getChar();
   // std::cout << serial.getChar();
   // std::cout << serial.getChar();
 
-  while(true){
-   serial.getChar();
-   sleep(2);
-  }
+  // while(true){
+  //  serial.getChar();
+  //  std::cerr << serial.getBufferIn();
+  //  serial.clearBufferIn();
+  //  sleep(4);
+  // }
 }
