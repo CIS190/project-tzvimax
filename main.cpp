@@ -56,14 +56,23 @@ public:
     sb.enable();
     stackTb.enable();
 
-    std::string device{"/dev/cu.usbserial-AI04SV81"};
-    serial.openConn(device, 9600);
+
+  //TODO: print, save contents of screen
     this->enable_animation(detail::fps_to_period(60));
     t.enable_word_wrap();
 
     menu.append_item("A");
-    menu.append_item("Disconnect");
-    menu.append_item("Connect");
+    menu.append_item("Disconnect").connect([this]{
+      serial.closeConn();
+      sb.set_contents("DISCONNECTED");
+    });
+    menu.append_item("Connect").connect([this]{
+                  std::string device{"/dev/cu.usbserial-AI04SV81"};
+      if( serial.openConn(device, 9600)){
+        sb.set_contents("CONNECTED");
+      } else { sb.set_contents("DISCONNECTED");}
+
+    });
     menu.append_item("Print");
     menu.height_policy.preferred(2);
 
