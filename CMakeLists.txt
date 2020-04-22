@@ -4,7 +4,7 @@ project(190 VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(190.out main.cpp)
+add_executable(190.out main.cpp Serial.cpp)
 
 # CPPurses is cloned into a directory named external/
 add_subdirectory(CPPurses)

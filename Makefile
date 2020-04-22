@@ -638,6 +638,33 @@ demos/fast:
 	$(MAKE) $(MAKESILENT) -f CPPurses/demos/CMakeFiles/demos.dir/build.make CPPurses/demos/CMakeFiles/demos.dir/build
 .PHONY : demos/fast
 
+Serial.o: Serial.cpp.o
+
+.PHONY : Serial.o
+
+# target to build an object file
+Serial.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/190.out.dir/build.make CMakeFiles/190.out.dir/Serial.cpp.o
+.PHONY : Serial.cpp.o
+
+Serial.i: Serial.cpp.i
+
+.PHONY : Serial.i
+
+# target to preprocess a source file
+Serial.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/190.out.dir/build.make CMakeFiles/190.out.dir/Serial.cpp.i
+.PHONY : Serial.cpp.i
+
+Serial.s: Serial.cpp.s
+
+.PHONY : Serial.s
+
+# target to generate assembly for a file
+Serial.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/190.out.dir/build.make CMakeFiles/190.out.dir/Serial.cpp.s
+.PHONY : Serial.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -713,6 +740,9 @@ help:
 	@echo "... demos"
 	@echo "... optional_tests"
 	@echo "... signals_test"
+	@echo "... Serial.o"
+	@echo "... Serial.i"
+	@echo "... Serial.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
