@@ -6,6 +6,15 @@
 
 using namespace cppurses;
 
+//TODO ReadMe with build instructions
+//2 side by side buffers
+//split screen, file, and serial is minmum to make it complex enough
+//Mode to display as Hex, binary
+//extend to TCP connection....
+//Local Echo
+//implement StreamBuff class as Serial--then you can create an ioStream.
+
+
 class TestMain : public cppurses::layout::Vertical {
 public:
   TestMain() { init(); }
