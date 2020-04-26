@@ -99,6 +99,11 @@ int main() {
   // Must create this object before any Widgets are created.
   System sys;
   // TestMain page;
+
+  //TODO Main list of things to do
+  //Fix Serial to not need a buffer passed in at creation?
+  //Make the "main view" a stack so we can turn on of off the split screeen,
+  //each one taking a new serial, and vc for their view....its a bit of a mess
   std::string bufferIn{};
   Serial serial{bufferIn};
   ViewController vc{serial};
