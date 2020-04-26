@@ -2,13 +2,12 @@
 #include "Serial.hpp"
 // #include "View.hpp"
 #include<map>
-
+#include "SerialHandler.hpp"
 class ViewController {
 
 private: 
     // const View& view;
-    Serial& serial;
-    const std::string dataIn;
+    SerialHandler& serial;
 
     //TODO should we make all of these refs const????
         //Answer-NO
@@ -17,19 +16,15 @@ private:
 
     public :
         
-    void connect(std::string&, int) const;
-    void disconnect() const;
+    void connect(const std::string&, int) const;
+    void disconnect(const std::string&) const;
 
     void sendString(std::string) const;
-    //TODO copying strings==bad???!
-    //Better is to decide who owns the pointer to data, 
-    //and pass that around 
-    //For nwo serial just returns a new string
-    std::string checkForData() const;
+    std::string checkForData(const std::string&) const;
 
     void setIOMode(ioModes);
     
-    ViewController(Serial&);
+    ViewController(SerialHandler&);
 
 
 };

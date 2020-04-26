@@ -3,32 +3,20 @@
 
 class Serial {
 
-    public:
-    Serial(std::string&);
-    bool openConn(std::string&, int const);
 
-    //TODO close
-    //TODO instead of open/close use construcgor and destructor
-    // void appendBufferIn();
-    // void overwriteBufferIn(); //resetBuffer 
+private:
+    std::string bufferIn;
+    int fd;
 
-    char getChar();
-    void clearBufferIn();
+
+public:
+    Serial();
+    bool openConn(const std::string&, int const);
     void closeConn();
 
-// 
-    std::string& getBufferIn();
-    private:
-    //TODO maybe use a raw pointer?
+    //Gets data and clears current buffer
+    std::string getData();
 
-    //TODO protect buffer with a mutex?
-    //This really shouldn't be a string, it should just be bytes maybe
-    std::string& bufferIn;
-    // std::string &bufferIn;
-        //TODO this is really bad, serial shoudl not own this string really. think about how to do this
-
-
-    int fd;
     
 
 };

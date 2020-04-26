@@ -13,13 +13,13 @@ vc{vc}
     //Setup Timer
     enable_animation(cppurses::detail::fps_to_period(60));
 
+
 }
 
  bool SerialReceiveView::timer_event()
        {
 
-           std::string receivedStr = std::string{vc.checkForData()};
-           append(receivedStr);
+           append(vc.checkForData("/dev/cu.usbserial-AI04SV81"));
                return Widget::timer_event();
     if(display_height() >= height()){
     scroll_down();
