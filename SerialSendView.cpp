@@ -7,7 +7,8 @@
 SerialSendView::SerialSendView(ViewController& vc) :
     vc{vc},
     sendText{this->make_child<SerialTextInputView>()},
-    sendButton{this->make_child<SerialSendButtonView>()}
+    sendButton{this->make_child<SerialSendButtonView>()},
+    enterShortcut{cppurses::Shortcuts::add_shortcut(cppurses::Key::Enter)}
 
 {
 
@@ -23,7 +24,23 @@ SerialSendView::SerialSendView(ViewController& vc) :
 
         //OnClickFor Button
         //TODO break any of this out into another function?
-    sendButton.clicked.connect([this] {
+        sendButton.clicked.connect([this] {
+                sendData(this);
+    });
+
+    
+    enterShortcut.connect([this] { 
+        
+                        sendData(this);
+ });
+
+    //TODO borde can be nicer like this:
+      //      left_side.settings.border.segments.south_west = L'╰';
+
+
+ }
+
+ void SerialSendView::sendData(SerialSendView *){
       sendButton.brush.set_background(cppurses::Color::White);
       sendButton.brush.set_foreground(cppurses::Color::Blue);
       sendButton.set_brush_paints_wallpaper(false);
@@ -35,6 +52,5 @@ SerialSendView::SerialSendView(ViewController& vc) :
       this->vc.sendData(device, this->sendText.contents().str());
       this->sendText.clear();
 
-    });
-
  }
+
