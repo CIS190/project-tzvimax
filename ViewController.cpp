@@ -14,6 +14,7 @@ void ViewController::connect(const std::string& device, int baud) const{
 
 std::string ViewController::checkForData(const std::string& device, ioModes mode) const {
    
+   //TODO we should bne able to tell if connected here without having to rely on exception from getData();
    switch (mode)
    {
    case ASCII:

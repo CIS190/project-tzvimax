@@ -1,9 +1,20 @@
 #include "MenuView.hpp"
+#include "ViewController.hpp"
 
 
-MenuView::MenuView(): Menu("Serial Display") {
-  this->append_item("Connect");
-  this->append_item("Disconnect");
+MenuView::MenuView(ViewController &vc):
+vc{vc},
+Menu("Serial Display") {
+  this->append_item("Connect").connect([this]{
+        std::string device{"/dev/cu.usbserial-AI04SV81"};
+
+    this->vc.connect(device, 9600);
+
+  });
+  this->append_item("Disconnect").connect([this]{
+            std::string device{"/dev/cu.usbserial-AI04SV81"};
+    this->vc.disconnect(device);
+  });
 
   this->height_policy.maximum(8);
 

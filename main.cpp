@@ -107,6 +107,7 @@ int main() {
   SerialHandler sh{};
   ViewController vc{sh};
   View view{vc};
+  //TODO make this the serialSendWindow....
   System::set_initial_focus(&view);
 
   return sys.run(view);
