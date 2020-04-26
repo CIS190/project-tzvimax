@@ -3,6 +3,8 @@
 #include "SerialTextInputView.hpp"
 #include "SerialSendButtonView.hpp"
 #include "ViewController.hpp"
+#include "SerialChoiceButtonView.hpp"
+
 class SerialSendView : public cppurses::layout::Horizontal {
 
 

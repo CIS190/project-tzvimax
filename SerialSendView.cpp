@@ -12,7 +12,7 @@ SerialSendView::SerialSendView(ViewController& vc) :
 
 {
 
-
+        this->make_child<SerialChoiceButtonView>();
         //TODO make this a function?
         //Set Visuals
         this->border.segments.disable_all();
