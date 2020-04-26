@@ -1,6 +1,6 @@
 #include "View.hpp"
 
-View::View(const ViewController &vc) : 
+View::View(ViewController &vc) : 
 vc{vc},
-serialView{this->make_child<SerialView>()} 
+serialView{this->make_child<SerialView>(vc)} 
 {}

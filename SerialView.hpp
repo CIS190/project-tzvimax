@@ -10,10 +10,10 @@ private :
     SerialReceiveView& serialReceiveView;
     SerialSendView& serialSendView;
 
-    
+    ViewController & vc;
 
 public :
 
-SerialView();
+SerialView(ViewController &vc);
 
 };

@@ -7,13 +7,13 @@ class SerialReceiveView : public cppurses::Textbox {
 
     private:
 
-    const ViewController & vc;
+    ViewController & vc;
 
     bool timer_event() override;
     // void updateBuffer();
 
     public:
-    SerialReceiveView(const ViewController&);
+    SerialReceiveView(ViewController&);
 
 
     

@@ -8,9 +8,9 @@ class View : public cppurses::layout::Vertical{
 
     SerialView& serialView;
 
-    const ViewController& vc;
+    ViewController& vc;
 
     public:
-    View(const ViewController&);
+    View(ViewController&);
 
 };
