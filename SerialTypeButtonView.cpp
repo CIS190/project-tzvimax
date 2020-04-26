@@ -1,6 +1,6 @@
-#include "SerialChoiceButtonView.hpp"
+#include "SerialTypeButtonView.hpp"
 
-SerialChoiceButtonView::SerialChoiceButtonView(ViewController& vc):
+SerialTypeButtonView::SerialTypeButtonView(ViewController& vc):
   vc{vc}
 
 {
@@ -11,5 +11,5 @@ SerialChoiceButtonView::SerialChoiceButtonView(ViewController& vc):
   this->border.segments.west.enable();
   this->border.enable();
 
-  this->set_label("No Connections");
+  this->set_label("ASCII");
 }

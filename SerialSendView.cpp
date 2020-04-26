@@ -16,6 +16,7 @@ SerialSendView::SerialSendView(ViewController& vc) :
         //Set Visuals
         this->border.segments.disable_all();
         this->border.segments.north.enable();
+        this->border.segments.south.enable();
         this->border.enable();
 
         this->height_policy.maximum(4);
