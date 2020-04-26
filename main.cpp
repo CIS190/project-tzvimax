@@ -99,8 +99,8 @@ int main() {
   // Must create this object before any Widgets are created.
   System sys;
   // TestMain page;
-  Serial serial;
-  ViewController vc{serial};
+  const Serial serial;
+  const ViewController vc{serial};
   View view{vc};
   System::set_initial_focus(&view);
 

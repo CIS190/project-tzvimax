@@ -8,6 +8,8 @@ class View : public cppurses::layout::Vertical{
 
     SerialView& serialView;
 
+    const ViewController& vc;
+
     public:
     View(const ViewController&);
 

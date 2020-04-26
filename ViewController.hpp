@@ -20,7 +20,7 @@ private:
     void disconnect();
 
     void sendString(std::string);
-    std::string checkForData();
+    std::string checkForData() const;
     
     ViewController(const Serial&);
 
