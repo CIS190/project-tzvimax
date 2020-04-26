@@ -1,27 +1,23 @@
 #include "ViewController.hpp"
 // #include "View.hpp"
+#include "SerialHandler.hpp"
 
-ViewController::ViewController(Serial& serial)
+ViewController::ViewController(SerialHandler& serial)
 : serial{serial}
 {}
 
-void ViewController::connect(std::string& device, int baud) const{
+void ViewController::connect(const std::string& device, int baud) const{
 
     serial.openConn(device,baud);
 
 }
 
-std::string ViewController::checkForData() const {
+std::string ViewController::checkForData(const std::string& device) const {
 
-//TODO fix the way this is handled in Serial
-serial.getChar();
-
-std::string bufferCopy {serial.getBufferIn()};
-serial.clearBufferIn();
-//TODO: Copyting strings is bad
-return bufferCopy;
+    return std::move(serial.getData(device));
 
 }
+void ViewController::disconnect(const std::string& device) const {
 
-void ViewController::disconnect() const {
+    serial.closeConn(device);
 }

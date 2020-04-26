@@ -2,8 +2,9 @@ cmake_minimum_required(VERSION 3.0.0)
 project(190 VERSION 0.1.0)
 
 add_executable(190.out main.cpp SerialReceiveView.cpp SerialSendView.cpp SerialView.cpp View.cpp ViewController.cpp
-Serial.cpp SerialTextInputView.cpp SerialTextInputView.hpp SerialSendButtonView.hpp SerialSendButtonView.cpp MenuView.cpp MenuView.hpp
-SerialChoiceButtonView.hpp SerialChoiceButtonView.cpp)
+Serial.cpp SerialTextInputView.cpp SerialTextInputView.hpp SerialSendButtonView.hpp SerialSendButtonView.cpp
+SerialHandler.cpp
+MenuView.cpp)
 
 # CPPurses is cloned into a directory named external/
 add_subdirectory(external/CPPurses)

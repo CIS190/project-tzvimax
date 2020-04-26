@@ -6,12 +6,13 @@
 #include <termios.h>
 #include <unistd.h>
 
-Serial::Serial(std::string& bufferIn) : bufferIn{bufferIn} {}
-bool Serial::openConn(std::string &device, int const baud) {
+Serial::Serial() : bufferIn{std::string{}} {}
+
+bool Serial::openConn(const std::string &device, int const baud) {
   // TODO check flags
   fd = open(device.c_str(), O_RDWR | O_NOCTTY | O_NDELAY);
   // TODO is there a timeout?
-  //TODO change to exception
+  // TODO change to exception
   if (fd == -1) {
     std::cout << "COULD NOT OPEN";
     return false;
@@ -81,45 +82,24 @@ bool Serial::openConn(std::string &device, int const baud) {
   return true;
 }
 
-void Serial::closeConn(){
-    close(fd);
-}
+void Serial::closeConn() { close(fd); }
 
-//TODO I hijacked this to read a bunch of chars-rename and/or create a different function
-char Serial::getChar() {
+std::string Serial::getData() {
 
   int count;
-  // TODO can use this to get multiple bytes!!
-    ioctl(fd, FIONREAD, &count);
-//   count = 10;
+  ioctl(fd, FIONREAD, &count);
   char readBytes[count];
 
   if (count > 0) {
-    // If the number of bytes read is equal to the number of bytes retrieved
-    // if (read(fd, readBytes, count) == count) {
-        int countRead = read(fd, readBytes, count);
-    if ( countRead> 0) {
-      //   std::cerr << "I am here";
-
-      // std::cout << "here";
+    int countRead = read(fd, readBytes, count);
+    if (countRead > 0) {
 
       for (int i = 0; i < countRead; i++) {
-        // if (pByte[i] != '\r') { // Just makes sure you're not scanning new
-        // lines
-        //                         // TODO: Do what you want with this character
         bufferIn.push_back(readBytes[i]);
-        // std::cerr << readBytes[i];
-        // return readBytes[i];
-        // }
-        //   }
       }
     }
   }
+  std::string bufferInTemp = std::move(bufferIn);
+  bufferIn.clear();
+  return std::move(bufferInTemp);
 }
-
-std::string &Serial::getBufferIn() { return this->bufferIn; }
-
-
-    void Serial::clearBufferIn(){
-        this->bufferIn.clear();
-    }
