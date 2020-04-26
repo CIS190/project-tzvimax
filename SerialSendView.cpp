@@ -1,7 +1,7 @@
 #include "SerialSendView.hpp"
 
 SerialSendView::SerialSendView(){
-        
+
 
         //TODO make this a function?
         //Set Visuals
@@ -11,4 +11,6 @@ SerialSendView::SerialSendView(){
 
         this->height_policy.maximum(4);
 
+        this->make_child<SerialTextInputView>();
+        this->make_child<cppurses::Push_button>("Button");
         }
