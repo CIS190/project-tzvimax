@@ -1,6 +1,9 @@
 #include "SerialChoiceButtonView.hpp"
 
-SerialChoiceButtonView::SerialChoiceButtonView() {
+SerialChoiceButtonView::SerialChoiceButtonView(ViewController& vc):
+  vc{vc}
+
+{
   this->height_policy.maximum(4);
   this->width_policy.maximum(18);
 

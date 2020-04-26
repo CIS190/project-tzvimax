@@ -12,7 +12,6 @@ SerialSendView::SerialSendView(ViewController& vc) :
 
 {
 
-        this->make_child<SerialChoiceButtonView>();
         //TODO make this a function?
         //Set Visuals
         this->border.segments.disable_all();
@@ -28,9 +27,9 @@ SerialSendView::SerialSendView(ViewController& vc) :
                 sendData(this);
     });
 
-    
-    enterShortcut.connect([this] { 
-        
+
+    enterShortcut.connect([this] {
+
                         sendData(this);
  });
 
@@ -53,4 +52,3 @@ SerialSendView::SerialSendView(ViewController& vc) :
       this->sendText.clear();
 
  }
-

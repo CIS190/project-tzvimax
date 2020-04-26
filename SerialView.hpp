@@ -1,14 +1,14 @@
 #pragma once
 #include <cppurses/cppurses.hpp>
 #include "SerialReceiveView.hpp"
-#include "SerialSendView.hpp"
+#include "WholeSerialInputView.hpp"
 
 class SerialView : public cppurses::layout::Vertical {
 
-private : 
+private :
 //TODO should we make all these const
     SerialReceiveView& serialReceiveView;
-    SerialSendView& serialSendView;
+    WholeSerialInputView& wholeSerialInputView;
 
     ViewController & vc;
 

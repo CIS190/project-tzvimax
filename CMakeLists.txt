@@ -4,6 +4,8 @@ project(190 VERSION 0.1.0)
 add_executable(190.out main.cpp SerialReceiveView.cpp SerialSendView.cpp SerialView.cpp View.cpp ViewController.cpp
 Serial.cpp SerialTextInputView.cpp SerialTextInputView.hpp SerialSendButtonView.hpp SerialSendButtonView.cpp
 SerialHandler.cpp SerialChoiceButtonView.hpp SerialChoiceButtonView.cpp
+InputTargetChoicesView.cpp InputTargetChoicesView.hpp
+WholeSerialInputView.cpp WholeSerialInputView.hpp
 MenuView.cpp)
 
 # CPPurses is cloned into a directory named external/
