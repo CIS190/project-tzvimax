@@ -5,5 +5,5 @@ class SerialSendView : public cppurses::Textbox {
 
     public:
 
-
+    SerialSendView();
 };
