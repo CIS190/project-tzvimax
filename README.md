@@ -1,9 +1,8 @@
 # Build Instructions
-mkdir external  
-clone https://github.com/a-n-t-h-o-n-y/CPPurses into external  
+git submodule update --init --recursive   # Pull in dependencies  
 mkdir build  
 cd build  
-cmake ..  
+cmake -DCMAKE_BUILD_TYPE=Release ..  
 make  
 
 To run, execute ./190.out from the build directory
