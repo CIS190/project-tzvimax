@@ -9,8 +9,8 @@ class SerialSendView : public cppurses::layout::Horizontal {
 
 
     private:
-    SerialSendButtonView& sendButton;
     SerialTextInputView& sendText;
+        SerialSendButtonView& sendButton;
     ViewController&  vc;
 
     sig::Signal<void ()> & enterShortcut;

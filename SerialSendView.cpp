@@ -6,8 +6,8 @@
 
 SerialSendView::SerialSendView(ViewController& vc) :
     vc{vc},
-    sendText{this->make_child<SerialTextInputView>()},
     sendButton{this->make_child<SerialSendButtonView>()},
+    sendText{this->make_child<SerialTextInputView>()},
     enterShortcut{cppurses::Shortcuts::add_shortcut(cppurses::Key::Enter)}
 
 {
