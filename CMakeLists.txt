@@ -6,6 +6,8 @@ Serial.cpp SerialTextInputView.cpp SerialTextInputView.hpp SerialSendButtonView.
 SerialHandler.cpp SerialChoiceButtonView.hpp SerialChoiceButtonView.cpp
 InputTargetChoicesView.cpp InputTargetChoicesView.hpp
 WholeSerialInputView.cpp WholeSerialInputView.hpp
+SerialMenuStack.cpp SerialMenuStack.hpp
+InputConnectionInfoView.cpp InputConnectionInfoView.hpp
 MenuView.cpp)
 
 # CPPurses is cloned into a directory named external/

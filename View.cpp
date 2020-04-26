@@ -2,6 +2,6 @@
 
 View::View(ViewController &vc) :
 vc{vc},
-menuView{this->make_child<MenuView>(vc)},
+menuStack{this->make_child<SerialMenuStack>(vc)},
 serialView{this->make_child<SerialView>(vc)}
 {}
