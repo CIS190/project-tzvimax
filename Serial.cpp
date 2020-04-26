@@ -6,7 +6,7 @@
 #include <termios.h>
 #include <unistd.h>
 
-Serial::Serial(std::string &bufferIn) : bufferIn(bufferIn) {}
+Serial::Serial() {}
 bool Serial::openConn(std::string &device, int const baud) {
   // TODO check flags
   fd = open(device.c_str(), O_RDWR | O_NOCTTY | O_NDELAY);
@@ -107,7 +107,7 @@ char Serial::getChar() {
         // if (pByte[i] != '\r') { // Just makes sure you're not scanning new
         // lines
         //                         // TODO: Do what you want with this character
-        this->getBufferIn().push_back(readBytes[i]);
+        this->bufferIn.push_back(readBytes[i]);
         // std::cerr << readBytes[i];
         // return readBytes[i];
         // }
@@ -117,9 +117,9 @@ char Serial::getChar() {
   }
 }
 
-std::string &Serial::getBufferIn() { return this->bufferIn; }
+// std::string &Serial::getBufferIn() { return this->bufferIn; }
 
 
-    void Serial::clearBufferIn(){
-        this->bufferIn.clear();
-    }
+    // void Serial::clearBufferIn(){
+    //     this->bufferIn.clear();
+    // }

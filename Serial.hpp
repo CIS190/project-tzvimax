@@ -4,7 +4,7 @@
 class Serial {
 
     public:
-    Serial(std::string&);
+    Serial();
     bool openConn(std::string&, int const);
 
     //TODO close
@@ -13,16 +13,18 @@ class Serial {
     // void overwriteBufferIn(); //resetBuffer 
 
     char getChar();
-    void clearBufferIn();
+    // void clearBufferIn();
     void closeConn();
 
-    std::string& getBufferIn();
+    std::string bufferIn;
+// 
+    // std::string& getBufferIn();
     private:
     //TODO maybe use a raw pointer?
 
     //TODO protect buffer with a mutex?
     //This really shouldn't be a string, it should just be bytes maybe
-    std::string& bufferIn;
+    // std::string& bufferIn;
 
     int fd;
     
