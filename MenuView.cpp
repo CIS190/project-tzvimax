@@ -13,7 +13,7 @@ Menu("Serial Display") {
   });
   this->append_item("Disconnect").connect([this]{
             std::string device{"/dev/cu.usbserial-AI04SV81"};
-    this->vc.disconnect(device);
+    this->vc.disconnect();
   });
 
   this->height_policy.maximum(8);

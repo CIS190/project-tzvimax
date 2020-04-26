@@ -27,10 +27,10 @@ std::string SerialHandler::getASCIIData(const std::string& device){
     //TODO fix this to move up handlign
 try{
     return std::move(connections.at(device).getASCIIData());
-
-    }
+        
+    }   
     catch(std::out_of_range e) {
-        return "";
+        return "ERROR";
     }
 }
 std::string SerialHandler::getHEXData(const std::string& device){

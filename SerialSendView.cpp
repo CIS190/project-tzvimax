@@ -43,12 +43,9 @@ SerialSendView::SerialSendView(ViewController& vc) :
       sendButton.brush.set_background(cppurses::Color::White);
       sendButton.brush.set_foreground(cppurses::Color::Blue);
       sendButton.set_brush_paints_wallpaper(false);
-      //TODO temp
-        std::string device{"/dev/cu.usbserial-AI04SV81"};
-
     //TODO send ascii vs text
 
-      this->vc.sendData(device, this->sendText.contents().str());
+      this->vc.sendData(this->sendText.contents().str());
       this->sendText.clear();
 
  }

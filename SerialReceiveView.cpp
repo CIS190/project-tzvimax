@@ -6,10 +6,6 @@ SerialReceiveView::SerialReceiveView(ViewController &vc) :
 vc{vc}
 {
 
-    //TODO this is temporary
-    // std::string device{"/dev/cu.usbserial-AI04SV81"};
-    // vc.connect(device, 9600);
-
     //Setup Timer
     enable_animation(cppurses::detail::fps_to_period(60));
 
@@ -19,7 +15,12 @@ vc{vc}
  bool SerialReceiveView::timer_event()
        {
            //TODO temp
-           append(vc.checkForData("/dev/cu.usbserial-AI04SV81", vc.getIOMode()));
+    for(auto& [device, data] : vc.checkForData(vc.getIOMode())){
+        if(data != "" ){
+            append(device + ":  " + data);
+        }
+    }
+
                return Widget::timer_event();
     if(display_height() >= height()){
     scroll_down();
