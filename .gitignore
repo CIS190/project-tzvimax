@@ -1,9 +1,2 @@
-CMakeFiles
 build
-CPPurses
-Testing
-*.out
-*.cmake
-CMakeCache.txt
-Makefile
-DartConfiguration.tcl
+external
