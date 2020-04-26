@@ -20,7 +20,7 @@ private:
     void disconnect(const std::string&) const;
 
     void sendString(std::string) const;
-    std::string checkForData(const std::string&) const;
+    std::string checkForData(const std::string&, ioModes) const;
 
     void setIOMode(ioModes);
     

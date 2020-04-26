@@ -21,10 +21,15 @@ void SerialHandler::closeConn(const std::string& device){
     connections.erase(device);
 }
 
-std::string SerialHandler::getData(const std::string& device){
+std::string SerialHandler::getASCIIData(const std::string& device){
     //TODO: okay to move? 
-    return std::move(connections.at(device).getData());
+    return std::move(connections.at(device).getASCIIData());
 }
+std::string SerialHandler::getHEXData(const std::string& device){
+    //TODO: okay to move? 
+    return std::move(connections.at(device).getHEXData());
+}
+
 
 void SerialHandler::sendData(const std::string&) const{
 

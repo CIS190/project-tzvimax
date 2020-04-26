@@ -12,10 +12,21 @@ void ViewController::connect(const std::string& device, int baud) const{
 
 }
 
-std::string ViewController::checkForData(const std::string& device) const {
+std::string ViewController::checkForData(const std::string& device, ioModes mode) const {
+   
+   switch (mode)
+   {
+   case ASCII:
+    return std::move(serial.getASCIIData(device));
+       break;
+   case HEX:
+       return std::move(serial.getHEXData(device));
 
-    return std::move(serial.getData(device));
-
+        break;
+   default:
+       break;
+   }
+   
 }
 void ViewController::disconnect(const std::string& device) const {
 

@@ -21,7 +21,9 @@ void openConn(const std::string&, int);
 
 void closeConn(const std::string&);
 
-std::string getData(const std::string&);
+std::string getASCIIData(const std::string&);
+std::string getHEXData(const std::string&);
+
 
 void sendData(const std::string&) const;
 

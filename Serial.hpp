@@ -1,13 +1,13 @@
 #pragma once
 #include<string>
+#include<sstream>
 
 class Serial {
 
 
 private:
-    std::string bufferIn;
+    std::stringstream bufferIn;
     int fd;
-
 
 public:
     Serial();
@@ -15,8 +15,9 @@ public:
     void closeConn();
 
     //Gets data and clears current buffer
-    std::string getData();
-
+    std::string getASCIIData();
+    std::string getHEXData();
+    void sendData(const std::string& );
     
 
 };

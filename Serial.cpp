@@ -5,8 +5,10 @@
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <unistd.h>
+#include<sstream>
+#include <iomanip>
 
-Serial::Serial() : bufferIn{std::string{}} {}
+Serial::Serial() : bufferIn{std::stringstream{}} {}
 
 bool Serial::openConn(const std::string &device, int const baud) {
   // TODO check flags
@@ -84,9 +86,10 @@ bool Serial::openConn(const std::string &device, int const baud) {
 
 void Serial::closeConn() { close(fd); }
 
-std::string Serial::getData() {
 
-  int count;
+std::string Serial::getASCIIData() {
+
+   int count;
   ioctl(fd, FIONREAD, &count);
   char readBytes[count];
 
@@ -95,11 +98,39 @@ std::string Serial::getData() {
     if (countRead > 0) {
 
       for (int i = 0; i < countRead; i++) {
-        bufferIn.push_back(readBytes[i]);
+        bufferIn << readBytes[i];
       }
     }
   }
-  std::string bufferInTemp = std::move(bufferIn);
+  std::string bufferInTemp = bufferIn.str();
+  bufferIn.str("");
   bufferIn.clear();
   return std::move(bufferInTemp);
+}
+
+
+std::string Serial::getHEXData() {
+int count;
+  ioctl(fd, FIONREAD, &count);
+  char readBytes[count];
+
+  if (count > 0) {
+    int countRead = read(fd, readBytes, count);
+    if (countRead > 0) {
+
+      for (int i = 0; i < countRead; i++) {
+        bufferIn << "0x" << std::setfill('0') << std::setw(2) << std::hex << 
+            (0xff & (unsigned int) readBytes[i]);
+      }
+    }
+  }
+  std::string bufferInTemp = bufferIn.str();
+  bufferIn.str("");
+  bufferIn.clear();
+  return std::move(bufferInTemp);
+}
+
+
+void Serial::sendData(const std::string& data){
+
 }
