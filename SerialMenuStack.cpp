@@ -4,4 +4,8 @@
 SerialMenuStack::SerialMenuStack(ViewController& vc) :
   Menu_stack("Serial Menu"),
   inputConnectionInfoView{this->make_page<InputConnectionInfoView>("Add Connection",vc)}
-  {}
+  {
+    inputConnectionInfoView.connectButton.clicked.connect([this] {
+            this->goto_menu();
+    });
+  }
