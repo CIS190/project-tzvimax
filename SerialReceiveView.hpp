@@ -2,7 +2,7 @@
 #include "ViewController.hpp"
 #include <cppurses/cppurses.hpp>
 
-class SerialReceiveView : public cppurses::Textbox {
+class SerialReceiveView : public cppurses::Text_display {
 
 
     private:
