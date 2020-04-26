@@ -19,7 +19,8 @@ vc{vc}
  bool SerialReceiveView::timer_event()
        {
 
-           append(vc.checkForData("/dev/cu.usbserial-AI04SV81"));
+           //TODO temp
+           append(vc.checkForData("/dev/cu.usbserial-AI04SV81", vc.getIOMode()));
                return Widget::timer_event();
     if(display_height() >= height()){
     scroll_down();

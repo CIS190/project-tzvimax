@@ -5,7 +5,7 @@
 SerialView::SerialView(ViewController & vc) 
 : vc{vc},
 serialReceiveView {this->make_child<SerialReceiveView>(vc)},
-serialSendView {this->make_child<SerialSendView>()}
+serialSendView {this->make_child<SerialSendView>(vc)}
  {}
 
  

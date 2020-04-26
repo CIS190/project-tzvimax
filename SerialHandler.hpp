@@ -25,7 +25,7 @@ std::string getASCIIData(const std::string&);
 std::string getHEXData(const std::string&);
 
 
-void sendData(const std::string&) const;
+void sendData(const std::string&, const std::string&);
 
-
+void sendDataAll(const std::string&);
 };

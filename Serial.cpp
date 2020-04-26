@@ -133,4 +133,14 @@ int count;
 
 void Serial::sendData(const std::string& data){
 
+
+  int wlen = write(fd, data.c_str(), data.length());
+    if (wlen != data.length()) {
+      //TODO throw error
+    }
+    tcdrain(fd);   
+
+
+
+
 }

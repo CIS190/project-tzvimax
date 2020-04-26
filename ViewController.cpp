@@ -32,3 +32,13 @@ void ViewController::disconnect(const std::string& device) const {
 
     serial.closeConn(device);
 }
+
+void ViewController::sendData(const std::string& device, const std::string& data){
+
+    serial.sendData(device,data);
+}
+
+//TODO
+ViewController::ioModes ViewController::getIOMode() const{
+return ASCII;
+}

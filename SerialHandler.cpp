@@ -31,6 +31,14 @@ std::string SerialHandler::getHEXData(const std::string& device){
 }
 
 
-void SerialHandler::sendData(const std::string&) const{
+void SerialHandler::sendData(const std::string& device, const std::string& data) {
 
+    connections.at(device).sendData(data);
+
+}
+
+void SerialHandler::sendDataAll(const std::string& data) {
+
+    for(auto& [device, serial] : connections)
+        serial.sendData(data);
 }

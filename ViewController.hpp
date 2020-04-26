@@ -19,10 +19,11 @@ private:
     void connect(const std::string&, int) const;
     void disconnect(const std::string&) const;
 
-    void sendString(std::string) const;
+    void sendData(const std::string&, const std::string&);
     std::string checkForData(const std::string&, ioModes) const;
 
     void setIOMode(ioModes);
+    ioModes getIOMode() const;
     
     ViewController(SerialHandler&);
 
