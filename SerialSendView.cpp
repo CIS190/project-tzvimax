@@ -13,4 +13,5 @@ SerialSendView::SerialSendView(){
 
         this->make_child<SerialTextInputView>();
         this->make_child<SerialSendButtonView>();
+        this->make_child<SerialChoiceButtonView>();
         }
