@@ -15,5 +15,5 @@ class SerialReceiveView : public cppurses::Text_display {
     SerialReceiveView(ViewController&);
 
 
-    
+
 };
