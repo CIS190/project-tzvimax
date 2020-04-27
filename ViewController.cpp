@@ -82,7 +82,29 @@ void ViewController::setActiveDevice(int device){
 
 void ViewController::sendData(const std::string& data){
     if(activeDevice < devices.size()){
-    serial.sendData(devices[activeDevice], data);
+        std::stringstream ss{};
+        std::stringstream ssBuffer{data};
+
+    unsigned long long hexVal;
+
+        switch (ioMode)
+        {
+        case ASCII:
+        serial.sendData(devices[activeDevice], data);
+            break;
+        case HEX:
+            for (int i =0; i < data.size(); i++){
+
+                ssBuffer >> std::hex >> hexVal;
+
+                ss << std::hex << hexVal;
+
+            }
+            serial.sendData(devices[activeDevice], ss.str());
+
+        default:
+            break;
+        }
 
     }
 
