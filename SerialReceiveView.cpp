@@ -15,11 +15,9 @@ vc{vc}
  bool SerialReceiveView::timer_event()
        {
            //TODO temp
-    for(auto& [device, data] : vc.checkForData(vc.getIOMode())){
-        if(data != "" ){
-            append(device + ":  " + data);
-        }
-    }
+    vc.checkForData(vc.getIOMode());
+
+    set_contents(vc.getBuffer());
 
     if(display_height() >= height()){
     scroll_down();

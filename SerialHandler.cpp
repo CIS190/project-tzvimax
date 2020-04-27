@@ -13,7 +13,9 @@ void SerialHandler::openConn(const std::string& device, int baud){
 
     //TODO does this automatically construct?? I think it does
     connections.emplace(device, Serial{});
-    connections.at(device).openConn(device, baud);
+    if (!connections.at(device).openConn(device, baud)){
+        throw std::exception();
+    }
 }
 
 void SerialHandler::closeConn(const std::string& device){
@@ -35,7 +37,7 @@ try{
 }
 std::string SerialHandler::getHEXData(const std::string& device){
     //TODO: okay to move? 
-    return std::move(connections.at(device).getHEXData());
+    return std::move(connections.at(device).getHEXData().append(" "));
 }
 
 

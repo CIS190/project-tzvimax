@@ -8,7 +8,6 @@ class SerialReceiveView : public cppurses::Text_display {
     private:
 
     ViewController & vc;
-
     bool timer_event() override;
     // void updateBuffer();
 

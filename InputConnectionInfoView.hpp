@@ -4,10 +4,12 @@
 
 class InputConnectionInfoView : public cppurses::layout::Horizontal {
 
+
   public:
   InputConnectionInfoView(ViewController&);
-  cppurses::Push_button& connectButton;
   cppurses::Textbox& deviceTextbox;
   cppurses::Textbox& baudTextbox;
+  cppurses::Push_button& connectButton;
+
   
 };

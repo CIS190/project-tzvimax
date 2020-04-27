@@ -8,41 +8,48 @@ ViewController::ViewController(SerialHandler& serial)
     devices{std::vector<std::string>()},
     //TODO devices should maube be a map from devices to data to show
     ioMode{ASCII},
-    activeDevice{-1}
+    activeDevice{-1},
+    lastConnectionSuccessful{false},
+    buffers{std::vector<std::string>()}
 {
 }
 
 void ViewController::connect(const std::string& device, int baud){
     try{
     serial.openConn(device,baud);
-    } catch (std::exception e){
-        //TODO open failed
-    }
     devices.push_back(device);
-    if(devices.size() < 1) {
-        activeDevice = -1;
-    } else{
-        activeDevice++; //Connecting sets it as active??? Maybe we don't want that...
+    buffers.push_back("");
+    activeDevice++; //Connecting sets it as active??? Maybe we don't want that...
+    lastConnectionSuccessful = true;
+    } catch (std::exception e){
+        lastConnectionSuccessful = false;
+        //TODO I dont think this is set correctly
     }
-    //TODO handling activeDevice properly
-
+    
 }
 
-std::map<std::string,std::string> ViewController::checkForData(ioModes mode) const {
+std::string ViewController::getBuffer(){
+
+    if(buffers.size() < 1 || activeDevice == -1){
+        return "";
+    } else{
+    return buffers[activeDevice];
+    }
+}
+void ViewController::checkForData(ioModes mode) {
    
-   auto result{std::map<std::string, std::string>()};
 
    if(devices.size() < 1){
-       return result;
+       return;
    } else{
-    for(auto device : devices){
+    for(int i = 0; i < devices.size(); i++){
                 switch (mode)
                 {
                 case ASCII:
-                    result.emplace(device,serial.getASCIIData(device));
+                    buffers[i].append(serial.getASCIIData(devices[i]));
                     break;
                 case HEX:
-                    result.emplace(device,serial.getHEXData(device));
+                    buffers[i].append(serial.getHEXData(devices[i]));
 
                         break;
                 default:
@@ -50,26 +57,24 @@ std::map<std::string,std::string> ViewController::checkForData(ioModes mode) con
                 }
 
     }
-    return result;
    }
-   //TODO we should be able to tell if connected here without having to rely on exception from getData();
    
 }
 void ViewController::disconnect() {
     try{
-    serial.closeConn(devices.at(activeDevice));
-
-    } catch (std::exception e){
-        //TODO handle
+    if(devices.size() < 1 || activeDevice == -1) {
+        //Nothing to disconnect from
+        return;
     }
-    // auto deviceIt = std::find(devices.begin(), devices.end(), device);
-    // if(deviceIt != devices.end()){
-        devices.erase(devices.begin() + activeDevice);
-    // } else{
-        //TODO yuo have a problem
-    // }
-    //TODO reset activeDEvice
-
+    serial.closeConn(devices.at(activeDevice));
+    //TODO this won't do anything right now, but is to handle if disconnect fails
+    
+    } catch (std::exception e){
+        //Status disconnect failed
+    }
+    devices.erase(devices.begin() + activeDevice);
+    buffers.erase(buffers.begin() + activeDevice);
+    //TODO: activeDevice--??
 }
 void ViewController::setActiveDevice(int device){
     activeDevice = device;
@@ -104,7 +109,46 @@ std::string ViewController::getActiveDevice() {
     return "No Connections";
 }
 
+bool ViewController::hasActiveDevice() {
+    if(devices.size() > 0 && activeDevice != -1) {
+            return true;
+    }
+    return false;
+}
+
+std::string ViewController::getLastConnectionStatus() {
+    return lastConnectionSuccessful ? "Success" : "Failure";
+}
+
 //TODO
 ViewController::ioModes ViewController::getIOMode() const{
 return ioMode;
+}
+
+std::string ViewController::getIOModeString() const{
+        switch (ioMode)
+    {
+    case ASCII:
+        return "ASCII";
+        break;
+    case HEX:
+        return "Hex";
+        break;
+    default:
+        break;
+    }
+}
+void ViewController::nextIOMode(){
+    switch (ioMode)
+    {
+    case ASCII:
+        ioMode = HEX;
+        break;
+    case HEX:
+        ioMode = ASCII;
+        break;
+    default:
+        break;
+    }
+
 }

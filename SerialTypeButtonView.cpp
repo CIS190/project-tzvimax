@@ -10,6 +10,13 @@ SerialTypeButtonView::SerialTypeButtonView(ViewController& vc):
   this->border.segments.disable_all();
   this->border.segments.west.enable();
   this->border.enable();
+  this->brush.set_background(cppurses::Color::Light_blue);
+  this->set_brush_paints_wallpaper(false);
 
-  this->set_label("ASCII");
+  this->set_label("Toggle ASCII/HEX");
+
+  this->clicked.connect([this]{
+    this->vc.nextIOMode();
+    // this->set_label(this->vc.getIOModeString());
+  });
 }

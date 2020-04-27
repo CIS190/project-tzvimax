@@ -5,7 +5,8 @@ SerialMenuStack::SerialMenuStack(ViewController& vc) :
   Menu_stack("Serial Menu"),
   vc{vc},
   inputConnectionInfoView{this->make_page<InputConnectionInfoView>("Add Connection",vc)},
-  inputDisconnectionInfoView{this->make_page<InputDisconnectionInfoView>("Remove Connection",vc)}
+  inputDisconnectionInfoView{this->make_page<InputDisconnectionInfoView>("Remove Connection",vc)},
+    escShortcut{cppurses::Shortcuts::add_shortcut(cppurses::Key::Escape)}
   {
     inputConnectionInfoView.connectButton.clicked.connect([this] {
             try{
@@ -15,7 +16,8 @@ SerialMenuStack::SerialMenuStack(ViewController& vc) :
               // problem getting input
             }
             // throw (std::exception());
-
+            inputConnectionInfoView.baudTextbox.set_contents("9600");
+          inputConnectionInfoView.deviceTextbox.set_contents("/dev/ttys000");
             this->goto_menu();
 
     });
@@ -29,11 +31,16 @@ SerialMenuStack::SerialMenuStack(ViewController& vc) :
             }
     });
 
+
+    escShortcut.connect([this]{
+      this->goto_menu();
+    });
+
     this->border.segments.disable_all();
     this->border.segments.north.enable();
     this->border.segments.south.enable();
     this->border.enable();
 
-    this->height_policy.maximum(8);
+    this->height_policy.maximum(6);
 
   }

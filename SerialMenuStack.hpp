@@ -6,6 +6,8 @@
 
 class SerialMenuStack : public cppurses::Menu_stack {
 
+  private:
+  sig::Signal<void ()> & escShortcut;
   InputConnectionInfoView& inputConnectionInfoView;
   InputDisconnectionInfoView& inputDisconnectionInfoView;
 

@@ -6,7 +6,7 @@ SerialChoiceButtonView::SerialChoiceButtonView(ViewController& vc):
 
 {
   this->height_policy.maximum(4);
-  this->width_policy.maximum(18);
+  this->width_policy.maximum(40);
 
   this->border.segments.disable_all();
   this->border.segments.west.enable();
@@ -14,8 +14,9 @@ SerialChoiceButtonView::SerialChoiceButtonView(ViewController& vc):
   
     enable_animation(cppurses::detail::fps_to_period(60));
 
-  this->set_label("No Connections");
-
+  this->set_label("Toggle Active Device");
+  this->brush.set_background(cppurses::Color::Light_blue);
+  this->set_brush_paints_wallpaper(false);
 
 
       
@@ -29,7 +30,7 @@ SerialChoiceButtonView::SerialChoiceButtonView(ViewController& vc):
  bool SerialChoiceButtonView::timer_event()
        {
            //TODO temp
-    this->set_label(vc.getActiveDevice());
+    // this->set_label(vc.getActiveDevice());
     return Widget::timer_event();
 
     }

@@ -10,7 +10,9 @@ SerialMenuStack.cpp SerialMenuStack.hpp
 InputConnectionInfoView.cpp InputConnectionInfoView.hpp
 SerialTypeButtonView.cpp SerialTypeButtonView.hpp
 InputDisconnectionInfoView.cpp InputDisconnectionInfoView.hpp
-MenuView.cpp)
+MenuView.cpp
+StatusBar.cpp
+)
 
 # CPPurses is cloned into a directory named external/
 add_subdirectory(external/CPPurses)

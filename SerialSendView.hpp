@@ -15,7 +15,7 @@ class SerialSendView : public cppurses::layout::Horizontal {
 
     sig::Signal<void ()> & enterShortcut;
 
-     void sendData(SerialSendView *);
+     void sendData();
 
     public:
 

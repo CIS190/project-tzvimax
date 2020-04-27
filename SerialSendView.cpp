@@ -18,6 +18,9 @@ SerialSendView::SerialSendView(ViewController& vc) :
         this->border.segments.north.enable();
         this->border.segments.south.enable();
         this->border.enable();
+      sendButton.brush.set_background(cppurses::Color::White);
+      sendButton.brush.set_foreground(cppurses::Color::Blue);
+      sendButton.set_brush_paints_wallpaper(false);
 
         this->height_policy.maximum(4);
 
@@ -25,13 +28,13 @@ SerialSendView::SerialSendView(ViewController& vc) :
         //OnClickFor Button
         //TODO break any of this out into another function?
         sendButton.clicked.connect([this] {
-                sendData(this);
+                sendData();
     });
 
 
     enterShortcut.connect([this] {
 
-                        sendData(this);
+                        sendData();
  });
 
     //TODO borde can be nicer like this:
@@ -40,13 +43,18 @@ SerialSendView::SerialSendView(ViewController& vc) :
 
  }
 
- void SerialSendView::sendData(SerialSendView *){
-      sendButton.brush.set_background(cppurses::Color::White);
-      sendButton.brush.set_foreground(cppurses::Color::Blue);
-      sendButton.set_brush_paints_wallpaper(false);
+ void SerialSendView::sendData(){
     //TODO send ascii vs text
 
+  if(this->vc.hasActiveDevice()){
       this->vc.sendData(this->sendText.contents().str());
       this->sendText.clear();
+
+  }
+      // sendButton.brush.set_background(cppurses::Color::Black);
+      // sendButton.brush.set_foreground(cppurses::Color::White);
+          // sendButton.brush.remove_foreground();
+
+
 
  }

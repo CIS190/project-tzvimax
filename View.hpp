@@ -9,6 +9,7 @@ class View : public cppurses::layout::Vertical{
 
     SerialMenuStack& menuStack;
     SerialView& serialView;
+    cppurses::Status_bar& status;
 
     ViewController& vc;
 

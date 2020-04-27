@@ -17,6 +17,9 @@ private:
     enum ioModes {HEX, ASCII}ioMode;
     int activeDevice;
     std::vector<std::string> devices;
+    std::vector<std::string> buffers;
+
+    bool lastConnectionSuccessful;
     
     public :
         
@@ -24,14 +27,19 @@ private:
     void disconnect();
 
     void sendData(const std::string&);
-    std::map<std::string,std::string> checkForData(ioModes) const;
-
-    void setIOMode(ioModes);
+    void checkForData(ioModes);
+    std::string getBuffer();
+    void nextIOMode();
     ioModes getIOMode() const;
+    std::string getIOModeString() const;
 
     void setActiveDevice(int);
     std::string nextDevice();
+    bool hasActiveDevice();
+    
     std::string getActiveDevice();
+    std::string getLastConnectionStatus();
+
 
     
     ViewController(SerialHandler&);

@@ -70,7 +70,7 @@ bool Serial::openConn(const std::string &device, int const baud) {
     Speed = B115200;
     break;
   default:
-    exit(-100); // TODO handle error
+    return false; // TODO handle error
   }
   cfsetispeed(&options, Speed); // Set the baud rate at 115200 bauds
   cfsetospeed(&options, Speed);
