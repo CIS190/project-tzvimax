@@ -6,8 +6,10 @@ class SerialChoiceButtonView: public cppurses::Push_button {
 
   private:
   ViewController&  vc;
+  bool timer_event() override;
 
   public:
   SerialChoiceButtonView(ViewController&);
+   
 
 };

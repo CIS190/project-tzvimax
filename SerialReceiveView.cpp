@@ -21,9 +21,10 @@ vc{vc}
         }
     }
 
-               return Widget::timer_event();
     if(display_height() >= height()){
     scroll_down();
     //TODO make this nicer
     }
+                   return Widget::timer_event();
+
       }

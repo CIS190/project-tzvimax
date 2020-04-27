@@ -88,13 +88,20 @@ void ViewController::sendData(const std::string& data){
 //TODO actually handle exception where no devices yet
 std::string ViewController::nextDevice() {
     if(devices.size() < 1) {
-        return "";
+        return "No Connections";
     }
     if(++activeDevice == devices.size()) {
         activeDevice = 0;
     }
 
     return devices[activeDevice];
+}
+
+std::string ViewController::getActiveDevice() {
+    if(devices.size() > 0 && activeDevice != -1) {
+            return devices[activeDevice];
+    }
+    return "No Connections";
 }
 
 //TODO

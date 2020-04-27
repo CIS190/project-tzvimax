@@ -31,6 +31,8 @@ private:
 
     void setActiveDevice(int);
     std::string nextDevice();
+    std::string getActiveDevice();
+
     
     ViewController(SerialHandler&);
 

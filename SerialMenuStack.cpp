@@ -22,6 +22,11 @@ SerialMenuStack::SerialMenuStack(ViewController& vc) :
 
     inputDisconnectionInfoView.disconnectButton.clicked.connect([this] {
             this->goto_menu();
+            try{
+                this->vc.disconnect();
+            } catch(std::exception e) {
+              //problem getting disconnect info
+            }
     });
 
     this->border.segments.disable_all();
