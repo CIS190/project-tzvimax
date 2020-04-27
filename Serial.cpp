@@ -16,7 +16,7 @@ bool Serial::openConn(const std::string &device, int const baud) {
   // TODO is there a timeout?
   // TODO change to exception
   if (fd == -1) {
-    std::cout << "COULD NOT OPEN";
+    // std::cout << "COULD NOT OPEN";
     return false;
   }
 

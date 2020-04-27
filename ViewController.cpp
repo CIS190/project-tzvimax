@@ -40,7 +40,6 @@ void ViewController::saveFile(){
     saveFileName.pop_back();
     saveFileName.pop_back();
     saveFileName.pop_back();
-    saveFileName.pop_back();
 
     saveFileName.append(std::to_string(++saveIncr));
 

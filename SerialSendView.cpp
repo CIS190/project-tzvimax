@@ -47,9 +47,9 @@ SerialSendView::SerialSendView(ViewController& vc) :
     //TODO send ascii vs text
 
   if(this->vc.hasActiveDevice()){
-      this->vc.sendData(this->sendText.contents().str());
+      this->vc.sendData(this->sendText.contents().str()+ "\n");
       if(this->vc.getLocalEcho()) {
-        this->vc.addBufferData(this->sendText.contents().str());
+        this->vc.addBufferData("> "+ this->sendText.contents().str()+"\n");
       }
       this->sendText.clear();
 
