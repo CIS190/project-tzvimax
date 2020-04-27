@@ -1,5 +1,4 @@
 #include "ViewController.hpp"
-// #include "View.hpp"
 #include "SerialHandler.hpp"
 #include <vector>
 #include <cstdlib>
@@ -9,7 +8,6 @@
 ViewController::ViewController(SerialHandler &serial)
     : serial{serial},
       devices{std::vector<std::string>()},
-      //TODO devices should maybe be a map from devices to data to show
       ioMode{ASCII},
       activeDevice{-1},
       lastConnectionSuccessful{false},
@@ -64,7 +62,6 @@ void ViewController::connect(const std::string &device, int baud)
     catch (std::exception e)
     {
         lastConnectionSuccessful = false;
-        //TODO I dont think this is set correctly
     }
 }
 
@@ -85,7 +82,12 @@ std::string ViewController::getBuffer()
     {
         return "";
     }
+    else
+    {
+        return buffers[activeDevice];
+    }
 }
+
 
 void ViewController::checkForData(ioModes mode)
 {
@@ -125,7 +127,7 @@ void ViewController::disconnect()
 
         serial.closeConn(devices.at(activeDevice));
 
-        //TODO this won't do anything right now, but is to handle if disconnect fails
+        //handle if disconnect fails
     }
     catch (std::exception e)
     {
@@ -145,11 +147,7 @@ void ViewController::sendData(const std::string &data)
 {
     if (activeDevice < devices.size())
     {
-        // std::stringstream ss{};
-        // std::stringstream ssBuffer{data};
-        // char bytes[data.size()];
-
-        // unsigned long long hexVal;
+      
         std::istringstream hex_chars_stream(data);
         std::vector<unsigned char> bytes;
         unsigned int c;
@@ -173,10 +171,9 @@ void ViewController::sendData(const std::string &data)
         }
     }
 
-    //TODO going to be a big problem using int for activeDevice--how to change it when you disconnect?
 }
 
-//TODO actually handle exception where no devices yet
+
 std::string ViewController::nextDevice()
 {
     if (devices.size() < 1)
