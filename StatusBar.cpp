@@ -17,6 +17,10 @@ bool StatusBar::timer_event() {
     statusString << "Active Device: " << vc.getActiveDevice();
     statusString << "  Last Connection: " << vc.getLastConnectionStatus();
     statusString << "  Data Mode: " << vc.getIOModeString();
+    statusString << "  AutoScroll: " << (vc.getAutoScroll() ? "YES" : "NO");
+    statusString << "  Local Echo: " << (vc.getLocalEcho() ? "ON" : "OFF");
+    statusString << "  Save File: " << vc.getSaveFile();
+
 
     this->update_status(statusString.str());
 

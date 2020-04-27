@@ -9,6 +9,10 @@ class InputTargetChoicesView : public cppurses::layout::Horizontal {
     private:
     SerialChoiceButtonView& serialChoiceButtonView;
     SerialTypeButtonView& serialTypeButtonView;
+    cppurses::Push_button& autoScrollToggle;
+    cppurses::Push_button& saveButton;
+    cppurses::Push_button& echoButton;
+    
 
     ViewController&  vc;
 

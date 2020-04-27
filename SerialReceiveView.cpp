@@ -6,7 +6,6 @@ SerialReceiveView::SerialReceiveView(ViewController &vc) :
 vc{vc}
 {
 
-    this->disable_input();
     //Setup Timer
     enable_animation(cppurses::detail::fps_to_period(60));
 
@@ -18,12 +17,11 @@ vc{vc}
            //TODO temp
     vc.checkForData(vc.getIOMode());
 
-    set_contents(vc.getBuffer());
-
-    if(display_height() >= height()){
-    scroll_down();
-    //TODO make this nicer
-    }
+    
+    if(vc.getAutoScroll()){
+    scroll_down(line_count() - bottom_line());
                    return Widget::timer_event();
 
+    }
+    set_contents(vc.getBuffer());
       }

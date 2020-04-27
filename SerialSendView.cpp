@@ -48,6 +48,9 @@ SerialSendView::SerialSendView(ViewController& vc) :
 
   if(this->vc.hasActiveDevice()){
       this->vc.sendData(this->sendText.contents().str());
+      if(this->vc.getLocalEcho()) {
+        this->vc.addBufferData(this->sendText.contents().str());
+      }
       this->sendText.clear();
 
   }

@@ -5,6 +5,9 @@
 #include "SerialHandler.hpp"
 #include<vector>
 
+#define SAVE_FILE "buffer"
+
+
 class ViewController {
 
 private: 
@@ -20,7 +23,13 @@ private:
     std::vector<std::string> buffers;
 
     bool lastConnectionSuccessful;
+    bool autoScroll;
+
+    std::string saveFileName;
+    int saveIncr;
     
+    bool localEcho;
+
     public :
         
     void connect(const std::string&, int);
@@ -29,6 +38,9 @@ private:
     void sendData(const std::string&);
     void checkForData(ioModes);
     std::string getBuffer();
+
+    void addBufferData(const std::string &);
+
     void nextIOMode();
     ioModes getIOMode() const;
     std::string getIOModeString() const;
@@ -39,6 +51,17 @@ private:
     
     std::string getActiveDevice();
     std::string getLastConnectionStatus();
+
+    std::string getSaveFile();
+
+    void saveFile();
+
+    bool getAutoScroll();
+    void toggleAutoScroll();
+
+    void toggleLocalEcho();
+    bool getLocalEcho();
+
 
 
     
