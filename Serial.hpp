@@ -1,9 +1,9 @@
 #pragma once
-#include<string>
-#include<sstream>
+#include <string>
+#include <sstream>
 
-class Serial {
-
+class Serial
+{
 
 private:
     std::stringstream bufferIn;
@@ -11,13 +11,12 @@ private:
 
 public:
     Serial();
-    bool openConn(const std::string&, int const);
+    bool openConn(const std::string &, int const);
     void closeConn();
 
     //Gets data and clears current buffer
     std::string getASCIIData();
     std::string getHEXData();
-    void sendData(const std::string& );
+    void sendData(const std::string &);
     void sendDataHex(unsigned char *, int);
-
 };

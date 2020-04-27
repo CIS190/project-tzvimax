@@ -4,15 +4,16 @@
 #include "InputDisconnectionInfoView.hpp"
 #include "ViewController.hpp"
 
-class SerialMenuStack : public cppurses::Menu_stack {
+class SerialMenuStack : public cppurses::Menu_stack
+{
 
-  private:
-  sig::Signal<void ()> & escShortcut;
-  InputConnectionInfoView& inputConnectionInfoView;
-  InputDisconnectionInfoView& inputDisconnectionInfoView;
+private:
+  sig::Signal<void()> &escShortcut;
+  InputConnectionInfoView &inputConnectionInfoView;
+  InputDisconnectionInfoView &inputDisconnectionInfoView;
 
-  ViewController& vc;
+  ViewController &vc;
 
-  public:
-  SerialMenuStack(ViewController&);
+public:
+  SerialMenuStack(ViewController &);
 };

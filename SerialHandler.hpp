@@ -10,11 +10,9 @@ class SerialHandler{
 
 private:
 
-//TODO okay to have this map of ojects?
 std::map<std::string, Serial> connections;
 
 public:
-//TODO throw exceptions, and handle in UI
 
 SerialHandler();
 void openConn(const std::string&, int);

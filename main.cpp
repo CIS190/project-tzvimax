@@ -7,7 +7,8 @@
 #include "SerialHandler.hpp"
 using namespace cppurses;
 
-int main() {
+int main()
+{
   System sys;
   SerialHandler sh{};
   ViewController vc{sh};

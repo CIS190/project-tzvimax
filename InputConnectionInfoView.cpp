@@ -8,7 +8,6 @@ InputConnectionInfoView::InputConnectionInfoView(ViewController& vc):
 {
 
   connectButton.brush.set_background(cppurses::Color::Green);
-  // connectButton.set_brush_paints_wallpaper(false);
 
   connectButton.height_policy.maximum(8);
   baudTextbox.height_policy.preferred(8);

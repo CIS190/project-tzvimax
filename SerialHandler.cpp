@@ -11,7 +11,6 @@ SerialHandler::SerialHandler() : connections{std::map<std::string,Serial>{}}
 
 void SerialHandler::openConn(const std::string& device, int baud){
 
-    //TODO does this automatically construct?? I think it does
     connections.emplace(device, Serial{});
     if (!connections.at(device).openConn(device, baud)){
         throw std::exception();
@@ -24,9 +23,6 @@ void SerialHandler::closeConn(const std::string& device){
 }
 
 std::string SerialHandler::getASCIIData(const std::string& device){
-    //TODO: okay to move? 
-
-    //TODO fix this to move up handlign
 try{
     return std::move(connections.at(device).getASCIIData());
         
@@ -36,7 +32,6 @@ try{
     }
 }
 std::string SerialHandler::getHEXData(const std::string& device){
-    //TODO: okay to move? 
     return std::move(connections.at(device).getHEXData());
 }
 

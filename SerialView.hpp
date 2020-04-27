@@ -3,17 +3,16 @@
 #include "SerialReceiveView.hpp"
 #include "WholeSerialInputView.hpp"
 
-class SerialView : public cppurses::layout::Vertical {
+class SerialView : public cppurses::layout::Vertical
+{
 
-private :
-//TODO should we make all these const
-    SerialReceiveView& serialReceiveView;
-    WholeSerialInputView& wholeSerialInputView;
+private:
+    //TODO should we make all these const
+    SerialReceiveView &serialReceiveView;
+    WholeSerialInputView &wholeSerialInputView;
 
-    ViewController & vc;
+    ViewController &vc;
 
-public :
-
-SerialView(ViewController &vc);
-
+public:
+    SerialView(ViewController &vc);
 };

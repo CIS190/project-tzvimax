@@ -3,14 +3,13 @@
 #include <cppurses/system/detail/fps_to_period.hpp>
 #include <sstream>
 
-StatusBar::StatusBar(ViewController& vc) : vc{vc}
+StatusBar::StatusBar(ViewController &vc) : vc{vc}
 {
 
     enable_animation(cppurses::detail::fps_to_period(60));
-
-
 }
-bool StatusBar::timer_event() {
+bool StatusBar::timer_event()
+{
 
     auto statusString = std::stringstream{};
 
@@ -21,8 +20,7 @@ bool StatusBar::timer_event() {
     statusString << "  Local Echo: " << (vc.getLocalEcho() ? "ON" : "OFF");
     statusString << "  Save File: " << vc.getSaveFile();
 
-
     this->update_status(statusString.str());
 
-    return Widget::timer_event(); 
+    return Widget::timer_event();
 }

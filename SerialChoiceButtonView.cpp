@@ -29,8 +29,6 @@ SerialChoiceButtonView::SerialChoiceButtonView(ViewController& vc):
 
  bool SerialChoiceButtonView::timer_event()
        {
-           //TODO temp
-    // this->set_label(vc.getActiveDevice());
     return Widget::timer_event();
 
     }
