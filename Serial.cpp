@@ -119,8 +119,8 @@ int count;
     if (countRead > 0) {
 
       for (int i = 0; i < countRead; i++) {
-        bufferIn << "0x" << std::setfill('0') << std::setw(2) << std::hex << 
-            (0xff & (unsigned int) readBytes[i]);
+        bufferIn  << std::setfill('0') << std::setw(2) << std::hex << 
+            (0xff & (unsigned int) readBytes[i]) << std::dec << " ";
       }
     }
   }
@@ -139,8 +139,14 @@ void Serial::sendData(const std::string& data){
       //TODO throw error
     }
     tcdrain(fd);   
+}
+
+void Serial::sendDataHex( unsigned char * bytes, int len){
 
 
-
-
+  int wlen = write(fd, bytes, len);
+    if (wlen != len) {
+      //TODO throw error
+    }
+    tcdrain(fd);   
 }

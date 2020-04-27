@@ -2,6 +2,7 @@
 // #include "View.hpp"
 #include "SerialHandler.hpp"
 #include <vector>
+#include<cstdlib>
 
 ViewController::ViewController(SerialHandler& serial)
 : serial{serial},
@@ -19,7 +20,10 @@ void ViewController::connect(const std::string& device, int baud){
     serial.openConn(device,baud);
     devices.push_back(device);
     buffers.push_back("");
-    activeDevice++; //Connecting sets it as active??? Maybe we don't want that...
+
+    if(devices.size() == 1){
+        activeDevice = 0;
+    }
     lastConnectionSuccessful = true;
     } catch (std::exception e){
         lastConnectionSuccessful = false;
@@ -82,10 +86,14 @@ void ViewController::setActiveDevice(int device){
 
 void ViewController::sendData(const std::string& data){
     if(activeDevice < devices.size()){
-        std::stringstream ss{};
-        std::stringstream ssBuffer{data};
+        // std::stringstream ss{};
+        // std::stringstream ssBuffer{data};
+        // char bytes[data.size()];
 
-    unsigned long long hexVal;
+    // unsigned long long hexVal;
+            std::istringstream hex_chars_stream(data);
+            std::vector<unsigned char> bytes;
+            unsigned int c;
 
         switch (ioMode)
         {
@@ -93,14 +101,13 @@ void ViewController::sendData(const std::string& data){
         serial.sendData(devices[activeDevice], data);
             break;
         case HEX:
-            for (int i =0; i < data.size(); i++){
 
-                ssBuffer >> std::hex >> hexVal;
-
-                ss << std::hex << hexVal;
-
+            while(hex_chars_stream >> std::hex >> c)
+            {
+                bytes.push_back(c);
             }
-            serial.sendData(devices[activeDevice], ss.str());
+
+            serial.sendDataHex(devices[activeDevice], bytes.data(), bytes.size());
 
         default:
             break;

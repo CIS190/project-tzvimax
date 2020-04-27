@@ -18,6 +18,6 @@ public:
     std::string getASCIIData();
     std::string getHEXData();
     void sendData(const std::string& );
-    
+    void sendDataHex(unsigned char *, int);
 
 };

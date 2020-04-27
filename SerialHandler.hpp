@@ -26,6 +26,6 @@ std::string getHEXData(const std::string&);
 
 
 void sendData(const std::string&, const std::string&);
-
+void sendDataHex(const std::string&, unsigned char *, int);
 void sendDataAll(const std::string&);
 };

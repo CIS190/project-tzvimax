@@ -37,13 +37,19 @@ try{
 }
 std::string SerialHandler::getHEXData(const std::string& device){
     //TODO: okay to move? 
-    return std::move(connections.at(device).getHEXData().append(" "));
+    return std::move(connections.at(device).getHEXData());
 }
 
 
 void SerialHandler::sendData(const std::string& device, const std::string& data) {
 
     connections.at(device).sendData(data);
+
+}
+
+void SerialHandler::sendDataHex(const std::string& device, unsigned char * bytes, int len) {
+
+    connections.at(device).sendDataHex(bytes, len);
 
 }
 

@@ -6,6 +6,7 @@ SerialReceiveView::SerialReceiveView(ViewController &vc) :
 vc{vc}
 {
 
+    this->disable_input();
     //Setup Timer
     enable_animation(cppurses::detail::fps_to_period(60));
 
