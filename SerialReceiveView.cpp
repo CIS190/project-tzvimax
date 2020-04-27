@@ -2,7 +2,7 @@
 #include "ViewController.hpp"
 #include <cppurses/system/detail/fps_to_period.hpp>
 
-SerialReceiveView::SerialReceiveView(ViewController &vc) : 
+SerialReceiveView::SerialReceiveView(ViewController &vc) :
 vc{vc}
 {
 
@@ -12,16 +12,16 @@ vc{vc}
 
 }
 
- bool SerialReceiveView::timer_event()
-       {
-           //TODO temp
-    vc.checkForData(vc.getIOMode());
+bool SerialReceiveView::timer_event()
+{
+  
+  vc.checkForData(vc.getIOMode());
+  set_contents(vc.getBuffer());
 
-    
-    if(vc.getAutoScroll()){
-    scroll_down(line_count() - bottom_line());
-                   return Widget::timer_event();
+  if(vc.getAutoScroll()){
+    scroll_down((line_count() - bottom_line()));
+  }
 
-    }
-    set_contents(vc.getBuffer());
-      }
+  return Widget::timer_event();
+
+ }
