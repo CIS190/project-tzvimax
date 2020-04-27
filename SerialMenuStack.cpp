@@ -8,9 +8,16 @@ SerialMenuStack::SerialMenuStack(ViewController& vc) :
   inputDisconnectionInfoView{this->make_page<InputDisconnectionInfoView>("Remove Connection",vc)}
   {
     inputConnectionInfoView.connectButton.clicked.connect([this] {
+            try{
+              this->vc.connect(inputConnectionInfoView.deviceTextbox.contents().str(),
+                            std::stoi(inputConnectionInfoView.baudTextbox.contents().str()));
+            } catch(std::exception e) {
+              // problem getting input
+            }
+                                        throw (std::exception);
+
             this->goto_menu();
-            this->vc.connect(inputConnectionInfoView.deviceTextbox.contents().str(),
-                          std::stoi(inputConnectionInfoView.baudTextbox.contents().str()));
+
     });
 
     inputDisconnectionInfoView.disconnectButton.clicked.connect([this] {
@@ -22,5 +29,5 @@ SerialMenuStack::SerialMenuStack(ViewController& vc) :
     this->border.segments.south.enable();
     this->border.enable();
 
-    this->height_policy.maximum(8);
+    this->height_policy.maximum(4);
   }

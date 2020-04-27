@@ -15,7 +15,6 @@ ViewController::ViewController(SerialHandler& serial)
 void ViewController::connect(const std::string& device, int baud){
     try{
     serial.openConn(device,baud);
-    
     } catch (std::exception e){
         //TODO open failed
     }
