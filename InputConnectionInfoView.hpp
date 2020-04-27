@@ -3,12 +3,11 @@
 #include "ViewController.hpp"
 
 class InputConnectionInfoView : public cppurses::layout::Horizontal {
-  private:
-  cppurses::Textbox& deviceTextbox;
-  cppurses::Textbox& baudTextbox;
-
 
   public:
   InputConnectionInfoView(ViewController&);
   cppurses::Push_button& connectButton;
+  cppurses::Textbox& deviceTextbox;
+  cppurses::Textbox& baudTextbox;
+  
 };

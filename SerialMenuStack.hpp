@@ -9,6 +9,8 @@ class SerialMenuStack : public cppurses::Menu_stack {
   InputConnectionInfoView& inputConnectionInfoView;
   InputDisconnectionInfoView& inputDisconnectionInfoView;
 
+  ViewController& vc;
+
   public:
   SerialMenuStack(ViewController&);
 };
