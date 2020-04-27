@@ -1,9 +1,9 @@
 #pragma once
 #include <cppurses/cppurses.hpp>
 
-class SerialSendButtonView : public cppurses::Push_button {
+class SerialSendButtonView : public cppurses::Push_button
+{
 
-    public:
-
+public:
     SerialSendButtonView();
 };

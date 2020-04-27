@@ -3,15 +3,15 @@
 #include "SerialSendView.hpp"
 #include "InputTargetChoicesView.hpp"
 
-class WholeSerialInputView : public cppurses::layout::Vertical {
+class WholeSerialInputView : public cppurses::layout::Vertical
+{
 
+private:
+    SerialSendView &serialSendView;
+    InputTargetChoicesView &inputTargetChoicesView;
 
-    private:
-    SerialSendView& serialSendView;
-    InputTargetChoicesView& inputTargetChoicesView;
+    ViewController &vc;
 
-    ViewController&  vc;
-
-    public:
-    WholeSerialInputView(ViewController&);
+public:
+    WholeSerialInputView(ViewController &);
 };

@@ -2,12 +2,12 @@
 #include <cppurses/cppurses.hpp>
 #include "ViewController.hpp"
 
-class SerialTypeButtonView: public cppurses::Push_button {
+class SerialTypeButtonView : public cppurses::Push_button
+{
 
-  private:
-  ViewController&  vc;
+private:
+  ViewController &vc;
 
-  public:
-  SerialTypeButtonView(ViewController&);
-
+public:
+  SerialTypeButtonView(ViewController &);
 };

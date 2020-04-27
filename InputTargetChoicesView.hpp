@@ -14,7 +14,7 @@ class InputTargetChoicesView : public cppurses::layout::Horizontal {
     cppurses::Push_button& echoButton;
     
 
-    ViewController&  vc;
+    ViewController& vc;
 
     public:
     InputTargetChoicesView(ViewController&);

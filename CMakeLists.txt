@@ -10,13 +10,13 @@ SerialMenuStack.cpp SerialMenuStack.hpp
 InputConnectionInfoView.cpp InputConnectionInfoView.hpp
 SerialTypeButtonView.cpp SerialTypeButtonView.hpp
 InputDisconnectionInfoView.cpp InputDisconnectionInfoView.hpp
-MenuView.cpp
 StatusBar.cpp
 )
 
 # CPPurses is cloned into a directory named external/
 add_subdirectory(external/CPPurses)
 target_link_libraries(190.out cppurses)
+add_compile_options(-Wextra -pedantic -Wall -std=c++17)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

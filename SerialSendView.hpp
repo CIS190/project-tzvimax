@@ -5,19 +5,18 @@
 #include "ViewController.hpp"
 #include "SerialChoiceButtonView.hpp"
 
-class SerialSendView : public cppurses::layout::Horizontal {
+class SerialSendView : public cppurses::layout::Horizontal
+{
 
+private:
+    SerialTextInputView &sendText;
+    SerialSendButtonView &sendButton;
+    ViewController &vc;
 
-    private:
-    SerialTextInputView& sendText;
-        SerialSendButtonView& sendButton;
-    ViewController&  vc;
+    sig::Signal<void()> &enterShortcut;
 
-    sig::Signal<void ()> & enterShortcut;
+    void sendData();
 
-     void sendData();
-
-    public:
-
-    SerialSendView(ViewController&);
+public:
+    SerialSendView(ViewController &);
 };

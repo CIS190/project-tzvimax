@@ -1,6 +1,7 @@
 #include "SerialTextInputView.hpp"
 
-SerialTextInputView::SerialTextInputView() {
+SerialTextInputView::SerialTextInputView()
+{
   this->border.segments.disable_all();
   this->border.segments.east.enable();
   this->border.enable();

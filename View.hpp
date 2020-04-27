@@ -5,15 +5,15 @@
 #include <cppurses/cppurses.hpp>
 #include <cppurses/system/detail/fps_to_period.hpp>
 
-class View : public cppurses::layout::Vertical{
+class View : public cppurses::layout::Vertical
+{
 
-    SerialMenuStack& menuStack;
-    SerialView& serialView;
-    cppurses::Status_bar& status;
+    SerialMenuStack &menuStack;
+    SerialView &serialView;
+    cppurses::Status_bar &status;
 
-    ViewController& vc;
+    ViewController &vc;
 
-    public:
-    View(ViewController&);
-
+public:
+    View(ViewController &);
 };

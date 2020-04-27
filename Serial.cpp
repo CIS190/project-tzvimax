@@ -11,20 +11,10 @@
 Serial::Serial() : bufferIn{std::stringstream{}} {}
 
 bool Serial::openConn(const std::string &device, int const baud) {
-  // TODO check flags
   fd = open(device.c_str(), O_RDWR | O_NOCTTY | O_NDELAY);
-  // TODO is there a timeout?
-  // TODO change to exception
   if (fd == -1) {
-    // std::cout << "COULD NOT OPEN";
     return false;
   }
-
-  // TODO error handling
-  // Asssumes fd opened correctly
-
-  // TODO unsure about these options-experiment
-  // Set echo options and stuff?
 
   // This code taken from
   // https://stackoverflow.com/questions/27609972/open-a-serial-port-with-arduino-using-c-with-xcode-on-mac
@@ -70,7 +60,7 @@ bool Serial::openConn(const std::string &device, int const baud) {
     Speed = B115200;
     break;
   default:
-    return false; // TODO handle error
+    return false; 
   }
   cfsetispeed(&options, Speed); // Set the baud rate at 115200 bauds
   cfsetospeed(&options, Speed);
@@ -136,7 +126,6 @@ void Serial::sendData(const std::string& data){
 
   int wlen = write(fd, data.c_str(), data.length());
     if (wlen != data.length()) {
-      //TODO throw error
     }
     tcdrain(fd);   
 }
@@ -146,7 +135,6 @@ void Serial::sendDataHex( unsigned char * bytes, int len){
 
   int wlen = write(fd, bytes, len);
     if (wlen != len) {
-      //TODO throw error
     }
     tcdrain(fd);   
 }

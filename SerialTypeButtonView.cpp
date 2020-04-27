@@ -1,7 +1,6 @@
 #include "SerialTypeButtonView.hpp"
 
-SerialTypeButtonView::SerialTypeButtonView(ViewController& vc):
-  vc{vc}
+SerialTypeButtonView::SerialTypeButtonView(ViewController &vc) : vc{vc}
 
 {
   this->height_policy.maximum(4);
@@ -15,8 +14,7 @@ SerialTypeButtonView::SerialTypeButtonView(ViewController& vc):
 
   this->set_label("Toggle ASCII/HEX");
 
-  this->clicked.connect([this]{
+  this->clicked.connect([this] {
     this->vc.nextIOMode();
-    // this->set_label(this->vc.getIOModeString());
   });
 }
