@@ -97,7 +97,6 @@ void ViewController::checkForData(ioModes mode) {
                     break;
                 case HEX:
                     buffers[i].append(serial.getHEXData(devices[i]));
-
                         break;
                 default:
                     break;

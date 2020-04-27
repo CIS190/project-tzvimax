@@ -8,8 +8,8 @@ SerialTypeButtonView::SerialTypeButtonView(ViewController& vc):
   this->width_policy.maximum(18);
 
   this->border.segments.disable_all();
-  this->border.segments.west.enable();
-  this->border.enable();
+  // this->border.segments.west.enable();
+  // this->border.enable();
   this->brush.set_background(cppurses::Color::Light_blue);
   this->set_brush_paints_wallpaper(false);
 
