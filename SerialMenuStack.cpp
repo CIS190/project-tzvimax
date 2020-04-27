@@ -14,7 +14,7 @@ SerialMenuStack::SerialMenuStack(ViewController& vc) :
             } catch(std::exception e) {
               // problem getting input
             }
-                                        throw (std::exception);
+            // throw (std::exception());
 
             this->goto_menu();
 
@@ -29,5 +29,6 @@ SerialMenuStack::SerialMenuStack(ViewController& vc) :
     this->border.segments.south.enable();
     this->border.enable();
 
-    this->height_policy.maximum(4);
+    this->height_policy.maximum(8);
+
   }
