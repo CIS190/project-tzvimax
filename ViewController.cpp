@@ -17,10 +17,10 @@ ViewController::ViewController(SerialHandler& serial)
     autoScroll{false},
     saveIncr{0},
     localEcho{false}
-{    
-    
+{
+
     saveFileName = std::string{SAVE_FILE};
-    
+
     std::string incr = std::to_string(saveIncr);
     saveFileName.append(incr);
     saveFileName.append(".log");
@@ -35,7 +35,7 @@ void ViewController::saveFile(){
     fileOut.open(getSaveFile());
     fileOut << getBuffer();
     fileOut.close();
-    saveFileName.erase(remove_if(saveFileName.begin(), saveFileName.end(), 
+    saveFileName.erase(remove_if(saveFileName.begin(), saveFileName.end(),
                 [](char c) { return !isalpha(c); } ), saveFileName.end());
     saveFileName.pop_back();
     saveFileName.pop_back();
@@ -63,7 +63,7 @@ void ViewController::connect(const std::string& device, int baud){
         lastConnectionSuccessful = false;
         //TODO I dont think this is set correctly
     }
-    
+
 }
 
 bool ViewController::getAutoScroll(){
@@ -84,7 +84,7 @@ std::string ViewController::getBuffer(){
     }
 }
 void ViewController::checkForData(ioModes mode) {
-   
+
 
    if(devices.size() < 1){
        return;
@@ -105,7 +105,7 @@ void ViewController::checkForData(ioModes mode) {
 
     }
    }
-   
+
 }
 void ViewController::disconnect() {
     try{
@@ -113,15 +113,18 @@ void ViewController::disconnect() {
         //Nothing to disconnect from
         return;
     }
+
     serial.closeConn(devices.at(activeDevice));
+
     //TODO this won't do anything right now, but is to handle if disconnect fails
-    
     } catch (std::exception e){
         //Status disconnect failed
     }
     devices.erase(devices.begin() + activeDevice);
     buffers.erase(buffers.begin() + activeDevice);
-    //TODO: activeDevice--??
+    
+    activeDevice = 0;
+
 }
 void ViewController::setActiveDevice(int device){
     activeDevice = device;
