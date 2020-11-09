@@ -1,4 +1,7 @@
-# Build Instructions
+# Serial Port Command Line Emulator
+
+
+Build Instructions
 clone the repo  
 ```
 git submodule update --init --recursive # Pull in dependencies 
